@@ -4,20 +4,10 @@ public class Piece {
     protected int isThreatened;
     protected String name;
     protected boolean hasMoved;
+    protected Piece[][] subBoard;
 
-    public Piece(){
+    Piece(){
         name = " ";
-    }
-
-    /**
-     * Sets the color (player owner) and the name of the Piece
-     *
-     * @param color El color de la pieza.
-     * @param name El tipo de pieza.
-     */
-    public Piece(int color, String name){
-        this.color = color;
-        this.name = name;
     }
 
     /**
@@ -30,8 +20,6 @@ public class Piece {
     public void setIsThreatened(int threat){ isThreatened = threat; }
 
     public int getIsThreatened(){ return isThreatened; }
-
-    public void setName(String name){ this.name = name; }
 
     public String getName(){ return name; }
 
@@ -49,5 +37,21 @@ public class Piece {
         else if(color == 2) { return "X"; }
         else if(color == 3) { return "*"; }
         else { return "!"; }
+    }
+
+    public void whichPiece(Piece[][] board, int i, int j){
+
+        if(board[i][j] instanceof Pawn) { subBoard[i][j] = new Pawn(); }
+        else if(board[i][j] instanceof Rock) { subBoard[i][j] = new Rock(); }
+        else if(board[i][j] instanceof Knight) { subBoard[i][j] = new Knight(); }
+        else if(board[i][j] instanceof Bishop) { subBoard[i][j] = new Bishop(); }
+        else if(board[i][j] instanceof Queen) { subBoard[i][j] = new Queen(); }
+        else if(board[i][j] instanceof King) { subBoard[i][j] = new King(); }
+        else{ subBoard[i][j] = new Piece(); }
+
+    }
+
+    public Piece[][] move(Piece[][] board, int i, int j){
+        return board;
     }
 }

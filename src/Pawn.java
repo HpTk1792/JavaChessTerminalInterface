@@ -1,18 +1,16 @@
 public class Pawn extends Piece {
 
-    /**
-     * Example Pawn must be completed
-     */
-    public Pawn(int color, String name) {super(color, name);}
+    Pawn(){ name = "P"; }
 
-    public static Piece[][] move(Piece[][] board, int i1, int j1){
+    public Piece[][] move(Piece[][] board, int i1, int j1){
 
         //DECLARING SUB_BOARD AND COPYING THE BOARD
-        Piece[][] subBoard = new Piece[8][8];
+        subBoard = new Piece[8][8];
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
-                subBoard[i][j] = new Piece();
-                subBoard[i][j].setName(board[i][j].getName());
+                whichPiece(board, i, j);
+                //subBoard[i][j] = new Piece();
+                //subBoard[i][j].setName(board[i][j].getName());
                 subBoard[i][j].setColor(board[i][j].getColor());
             }
         }

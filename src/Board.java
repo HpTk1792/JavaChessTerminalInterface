@@ -38,28 +38,28 @@ public class Board {
      */
     public void initiateBoard() {
 
-        board[0][0].setName("R");
-        board[0][1].setName("N");
-        board[0][2].setName("B");
-        board[0][3].setName("Q");
-        board[0][4].setName("K");
-        board[0][5].setName("B");
-        board[0][6].setName("N");
-        board[0][7].setName("R");
+        board[0][0] = new Rock();
+        board[0][1] = new Knight();
+        board[0][2] = new Bishop();
+        board[0][3] = new Queen();
+        board[0][4] = new King();
+        board[0][5] = new Bishop();
+        board[0][6] = new Knight();
+        board[0][7] = new Rock();
 
         for(int i = 0; i < 8; i++) {
-            board[1][i].setName("P");
-            board[6][i].setName("P");
+            board[1][i] = new Pawn();
+            board[6][i] = new Pawn();
         }
 
-        board[7][0].setName("R");
-        board[7][1].setName("N");
-        board[7][2].setName("B");
-        board[7][3].setName("Q");
-        board[7][4].setName("K");
-        board[7][5].setName("B");
-        board[7][6].setName("N");
-        board[7][7].setName("R");
+        board[7][0] = new Rock();
+        board[7][1] = new Knight();
+        board[7][2] = new Bishop();
+        board[7][3] = new Queen();
+        board[7][4] = new King();
+        board[7][5] = new Bishop();
+        board[7][6] = new Knight();
+        board[7][7] = new Rock();
 
         for(int i = 0; i < 8; i++) {
             board[0][i].setColor(2);
@@ -94,7 +94,7 @@ public class Board {
      */
     public void showMove(int i1, int j1){
 
-        nextMove = pieceSelector(i1, j1);
+        nextMove = board[i1][j1].move(board, i1, j1);
         System.out.print("-+--+--+--+--+--+--+--+--+");
         for(int i = 0; i < 8; i++) {
             System.out.print("\n" + i + "|");
@@ -118,37 +118,17 @@ public class Board {
             for(int i = 0; i < 8; i++) {
                 for(int j = 0; j < 8; j++){
                     if(nextMove[i][j].getColor() == 4){
-                        board[i1][j1].setName(board[i][j].getName());
-                        board[i1][j1].setColor(playerTurn);
-                        board[i][j].setColor(0);
-                        board[i][j].setName(" ");
-                        board[i][j].setHasMoved(true);
+
+                        board[i1][j1] = board[i][j];
+                        board[i][j] = new Piece();
+
+                        board[i1][j1].setHasMoved(true);
                         return true;
                     }
                 }
             }
         }
         return false;
-    }
-
-    /**
-     * Calls the current move method from the correspondent Piece
-     *
-     * @param i Coordenada en "i"
-     * @param j Coordenada en "j"
-     * @return the subBoard with the possible moves.
-     */
-    public Piece[][] pieceSelector(int i, int j) {
-
-        String piece = board[i][j].getName();
-
-        if(piece.equals("P")) { return Pawn.move(board, i, j); }
-        // else if(piece.equals("R")) { return Rock.move(board, i, j); }
-        // else if(piece.equals("N")) { return Knight.move(board, i, j); }
-        // else if(piece.equals("B")) { return Bishop.move(board, i, j); }
-        // else if(piece.equals("Q")) { return Queen.move(board, i, j); }
-        // else if(piece.equals("K")) { return King.move(board, i, j); }
-        else { return board ;}
     }
 
 }
