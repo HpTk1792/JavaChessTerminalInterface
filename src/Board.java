@@ -144,8 +144,8 @@ public class Board {
 
         if(piece.equals("P")) { return Pawn.move(board, i, j); }
         // else if(piece.equals("R")) { return Rock.move(board, i, j); }
-        // else if(piece.equals("N")) { return Knight.move(board, i, j); }
-        // else if(piece.equals("B")) { return Bishop.move(board, i, j); }
+        else if(piece.equals("N")) { return Knight.move(board, i, j); }
+        else if(piece.equals("B")) { return Bishop.move(board, i, j); }
         // else if(piece.equals("Q")) { return Queen.move(board, i, j); }
         // else if(piece.equals("K")) { return King.move(board, i, j); }
         else { return board ;}

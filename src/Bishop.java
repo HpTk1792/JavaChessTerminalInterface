@@ -17,13 +17,6 @@ public class Bishop extends Piece {
             }
         }
 
-        //COPY BOARD
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                subBoard[i][j].setName(board[i][j].getName());
-                subBoard[i][j].setColor(board[i][j].getColor());
-            }
-        }
 
         // COMPORTAMIENTO DE LA PIEZA
 
