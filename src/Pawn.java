@@ -18,88 +18,48 @@ public class Pawn extends Piece {
         }
 
         // PIECE BEHAVIOR!
-/*
-        int black = --1;
-        int white = -1;
-        int var = 0;
-        int black2 = --2;
-        int white2 = -2;
-        int var2 = 0;
+        // Se asignan los movimientos a variables para poder reutilizar el código para ambos jugadores.
 
+        int blackPlayer = -1;
+        int white = 1;
+        int movements = 0;
+
+        int blackPlayer2 = -2;
+        int white2 = 2;
+        int movements2 = 0;
+
+        int rivalColour = 0;
+
+        //Se asignan variables a cada color-jugador
         if(board[i1][j1].getColor() == 1){
-            var = white;
-            var2 = white2;
+            movements = white;
+            movements2 = white2;
+            rivalColour = 2;
 
         } else if(board[i1][j1].getColor() == 2){
-            var = black;
-            var2 = black2;
+            movements = blackPlayer;
+            movements2 = blackPlayer2;
+            rivalColour = 1;
         }
 
-
-        if (subBoard[i1+var][j1].getColor()!=board[i1][j1].getColor()){
-            subBoard[i1+var][j1].setColor(3);
-            if (!board[i1][j1].getHasMoved() && subBoard[i1+var2][j1].getColor()==0) {
-                subBoard[i1+var2][j1].setColor(3);
+        //avance peón
+        if (subBoard[i1-movements][j1].getColor()!=board[i1][j1].getColor()){
+            subBoard[i1-movements][j1].setColor(3);
+            if (!board[i1][j1].getHasMoved() && subBoard[i1-movements2][j1].getColor()!=board[i1][j1].getColor()) {
+                subBoard[i1-movements2][j1].setColor(3);
             }
         }
-
+        //atacar ficha rival
         if (j1 - 1 >= 0) {
-            if (subBoard[i1 - 1][j1 - 1].getColor() == 2) {
-                subBoard[i1 - 1][j1 - 1].setColor(3);
+            if (subBoard[i1 - movements][j1 - movements].getColor() == rivalColour) {
+                subBoard[i1 - movements][j1 - movements].setColor(3);
             }
         }
         if (j1 + 1 < 8) {
-            if (subBoard[i1 - 1][j1 + 1].getColor() == 2) {
-                subBoard[i1 - 1][j1 + 1].setColor(3);
+            if (subBoard[i1 - movements][j1 - movements].getColor() == rivalColour) {
+                subBoard[i1 - movements][j1 - movements].setColor(3);
             }
         }
-*/
-
-
-
-        if (board[i1][j1].getColor() == 1) {
-            if (subBoard[i1 - 1][j1].getColor()==0){
-                subBoard[i1 - 1][j1].setColor(3);
-                if (!board[i1][j1].getHasMoved() && subBoard[i1 - 2][j1].getColor()==0) {
-                    subBoard[i1 - 2][j1].setColor(3);
-                }
-            }
-
-            if (j1 - 1 >= 0) {
-                if (subBoard[i1 - 1][j1 - 1].getColor() == 2) {
-                    subBoard[i1 - 1][j1 - 1].setColor(3);
-                }
-            }
-            if (j1 + 1 < 8) {
-                if (subBoard[i1 - 1][j1 + 1].getColor() == 2) {
-                    subBoard[i1 - 1][j1 + 1].setColor(3);
-                }
-            }
-
-
-        } else if (board[i1][j1].getColor() == 2) {
-            if (subBoard[i1 + 1][j1].getColor()==0){
-                subBoard[i1 + 1][j1].setColor(3);
-                if (!board[i1][j1].getHasMoved() && subBoard[i1 + 2][j1].getColor()==0) {
-                    subBoard[i1 + 2][j1].setColor(3);
-                }
-            }
-
-
-            if (j1 - 1 >= 0) {
-                if (subBoard[i1 + 1][j1 - 1].getColor() == 1) {
-                    subBoard[i1 + 1][j1 - 1].setColor(3);
-                }
-            }
-            if (j1 + 1 < 8) {
-                if (subBoard[i1 + 1][j1 + 1].getColor() == 1) {
-                    subBoard[i1 + 1][j1 + 1].setColor(3);
-                }
-            }
-
-        }
-
-
         subBoard[i1][j1].setColor(4);
 
         return subBoard;
