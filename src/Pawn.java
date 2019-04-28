@@ -18,7 +18,7 @@ public class Pawn extends Piece {
         }
 
         // PIECE BEHAVIOR!
-        // Se asignan los movimientos a variables para poder reutilizar el código para ambos jugadores.
+        // The movements are assigned to variables to be able to reuse the code for both players.
 
         int blackPlayer = -1;
         int white = 1;
@@ -30,7 +30,7 @@ public class Pawn extends Piece {
 
         int rivalColour = 0;
 
-        //Se asignan variables a cada color-jugador
+        //Assing variables for each colour
         if(board[i1][j1].getColor() == 1){
             movements = white;
             movements2 = white2;
@@ -42,14 +42,14 @@ public class Pawn extends Piece {
             rivalColour = 1;
         }
 
-        //avance peón //probar si se come a alguien primer avance 2
+        //go on
         if (subBoard[i1-movements][j1].getColor()==0){
             subBoard[i1-movements][j1].setColor(3);
             if (!board[i1][j1].getHasMoved() && subBoard[i1-movements2][j1].getColor()!=board[i1][j1].getColor()) {
                 subBoard[i1-movements2][j1].setColor(3);
             }
         }
-        //atacar ficha rival
+        //diagonal attack
         if (j1 - 1 >= 0) {
             if (subBoard[i1 - movements][j1 - 1].getColor() == rivalColour) {
                 subBoard[i1 - movements][j1 - 1].setColor(3);
