@@ -122,7 +122,7 @@ public class Board {
                         board[i1][j1].setColor(playerTurn);
                         board[i][j].setColor(0);
                         board[i][j].setName(" ");
-                        board[i][j].setHasMoved(true);
+                        board[i1][j1].setHasMoved(true);
                         return true;
                     }
                 }

@@ -42,8 +42,8 @@ public class Pawn extends Piece {
             rivalColour = 1;
         }
 
-        //avance peón
-        if (subBoard[i1-movements][j1].getColor()!=board[i1][j1].getColor()){
+        //avance peón //probar si se come a alguien primer avance 2
+        if (subBoard[i1-movements][j1].getColor()==0){
             subBoard[i1-movements][j1].setColor(3);
             if (!board[i1][j1].getHasMoved() && subBoard[i1-movements2][j1].getColor()!=board[i1][j1].getColor()) {
                 subBoard[i1-movements2][j1].setColor(3);
@@ -51,13 +51,13 @@ public class Pawn extends Piece {
         }
         //atacar ficha rival
         if (j1 - 1 >= 0) {
-            if (subBoard[i1 - movements][j1 - movements].getColor() == rivalColour) {
-                subBoard[i1 - movements][j1 - movements].setColor(3);
+            if (subBoard[i1 - movements][j1 - 1].getColor() == rivalColour) {
+                subBoard[i1 - movements][j1 - 1].setColor(3);
             }
         }
         if (j1 + 1 < 8) {
-            if (subBoard[i1 - movements][j1 - movements].getColor() == rivalColour) {
-                subBoard[i1 - movements][j1 - movements].setColor(3);
+            if (subBoard[i1 - movements][j1 + 1].getColor() == rivalColour) {
+                subBoard[i1 - movements][j1 + 1].setColor(3);
             }
         }
         subBoard[i1][j1].setColor(4);
