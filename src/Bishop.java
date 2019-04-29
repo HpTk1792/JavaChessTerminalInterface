@@ -12,119 +12,77 @@ public class Bishop extends Piece {
         }
 
 
-        // COMPORTAMIENTO DE LA PIEZA
+        // PIECE BEHAVIOR!
+        // The movements are assigned to variables to be able to reuse the code for both players.
 
-        //turno NEGRAS
+        int rivalColour = 0;
+        int sumarI = -1;
+        int restarI = 1;
 
-        if(board[i1][j1].getColor() == 2) {
+
+        if(board[i1][j1].getColor() == 1){
+            rivalColour = 2;
+
+        } else if(board[i1][j1].getColor() == 2) {
+            rivalColour = 1;
+        }
 
 
-            for (int i = i1, c = 1; i < 8 && j1 + c < 8; i++, c++) {
-                if (subBoard[i + 1][j1 + c].getColor() == 1) {
-                    subBoard[i + 1][j1 + c].setColor(3);
-                    break;
-                } else if (subBoard[i + 1][j1 + c].getColor() == 2) {
-                    break;
+        //go down to the right
+        for (int i = i1, c = 1; i < 7 && j1 + c < 7; i++, c++) {
+            if (subBoard[i - sumarI][j1 + c].getColor() == rivalColour) {
+                subBoard[i - sumarI][j1 + c].setColor(3);
+                break;
+            } else if (subBoard[i - sumarI][j1 + c].getColor() == board[i1][j1].getColor()) {
+                break;
 
-                } else {
-                    subBoard[i + 1][j1 + c].setColor(3);
-                }
-            }
-
-            for (int i = i1, ci = 1; i < 8 && j1 - ci >= 0; i++, ci++) {
-                if (subBoard[i + 1][j1 - ci].getColor() == 1) {
-                    subBoard[i + 1][j1 - ci].setColor(3);
-                    break;
-                } else if (subBoard[i + 1][j1 - ci].getColor() == 2) {
-                    break;
-
-                } else {
-                    subBoard[i + 1][j1 - ci].setColor(3);
-                }
-
-            }
-
-            for (int i = i1, ci = 1; i > 0 && j1 - ci >= 0; i--, ci++) {
-                if (subBoard[i - 1][j1 - ci].getColor() == 1) {
-                    subBoard[i - 1][j1 - ci].setColor(3);
-                    break;
-                } else if (subBoard[i - 1][j1 - ci].getColor() == 2) {
-                    break;
-
-                } else {
-                    subBoard[i - 1][j1 - ci].setColor(3);
-                }
-
-            }
-
-            for (int i = i1, c = 1; i > 0 && j1 + c < 8; i--, c++) {
-                if (subBoard[i - 1][j1 + c].getColor() == 1) {
-                    subBoard[i - 1][j1 + c].setColor(3);
-                    break;
-                } else if (subBoard[i - 1][j1 + c].getColor() == 2) {
-                    break;
-
-                } else {
-                    subBoard[i - 1][j1 + c].setColor(3);
-                }
+            } else {
+                subBoard[i - sumarI][j1 + c].setColor(3);
             }
         }
-        else {
-            //turno blancas
 
-            for (int i = i1, ci = 1; i > 0 && j1 - ci >= 0; i--, ci++) {
-                if (subBoard[i - 1][j1 - ci].getColor() == 2) {
-                    subBoard[i - 1][j1 - ci].setColor(3);
-                    break;
-                } else if (subBoard[i - 1][j1 - ci].getColor() == 1) {
-                    break;
+        //go down to the left
+        for (int i = i1, ci = 1; i < 7 && j1 - ci >= 0; i++, ci++) {
+            if (subBoard[i - sumarI][j1 - ci].getColor() == rivalColour) {
+                subBoard[i - sumarI][j1 - ci].setColor(3);
+                break;
+            } else if (subBoard[i -sumarI][j1 - ci].getColor() == board[i1][j1].getColor()) {
+                break;
 
-                } else {
-                    subBoard[i - 1][j1 - ci].setColor(3);
-                }
-
+            } else {
+                subBoard[i -sumarI][j1 - ci].setColor(3);
             }
 
-            for (int i = i1, c = 1; i > 0 && j1 + c < 8; i--, c++) {
-                if (subBoard[i - 1][j1 + c].getColor() == 2) {
-                    subBoard[i - 1][j1 + c].setColor(3);
-                    break;
-                } else if (subBoard[i - 1][j1 + c].getColor() == 1) {
-                    break;
+        }
 
-                } else {
-                    subBoard[i - 1][j1 + c].setColor(3);
-                }
+        //go up to the right
+        for (int i = i1, ci = 1; i > 0 && j1 - ci >= 0; i--, ci++) {
+            if (subBoard[i - restarI][j1 - ci].getColor() == rivalColour) {
+                subBoard[i - restarI][j1 - ci].setColor(3);
+                break;
+            } else if (subBoard[i - restarI][j1 - ci].getColor() == board[i1][j1].getColor()) {
+                break;
+
+            } else {
+                subBoard[i - restarI][j1 - ci].setColor(3);
             }
 
-            for (int i = i1, c = 1; i < 7 && j1 + c < 8; i++, c++) {
-                if (subBoard[i + 1][j1 + c].getColor() == 2) {
-                    subBoard[i + 1][j1 + c].setColor(3);
-                    break;
-                } else if (subBoard[i + 1][j1 + c].getColor() == 1) {
-                    break;
+        }
 
-                } else {
-                    subBoard[i + 1][j1 + c].setColor(3);
-                }
-            }
+        //go up to the left
+        for (int i = i1, c = 1; i > 0 && j1 + c < 8; i--, c++) {
+            if (subBoard[i - restarI][j1 + c].getColor() == rivalColour) {
+                subBoard[i - restarI][j1 + c].setColor(3);
+                break;
+            } else if (subBoard[i - restarI][j1 + c].getColor() == board[i1][j1].getColor()) {
+                break;
 
-            for (int i = i1, ci = 1; i < 7 && j1 - ci >= 0; i++, ci++) {
-                if (subBoard[i + 1][j1 - ci].getColor() == 2) {
-                    subBoard[i + 1][j1 - ci].setColor(3);
-                    break;
-                } else if (subBoard[i + 1][j1 - ci].getColor() == 1) {
-                    break;
-
-                } else {
-                    subBoard[i + 1][j1 - ci].setColor(3);
-                }
-
+            } else {
+                subBoard[i - restarI][j1 + c].setColor(3);
             }
         }
+
         subBoard[i1][j1].setColor(4);
         return subBoard;
     }
 }
-
-
