@@ -1,3 +1,6 @@
+/**
+ * Author: Alejandro Quiroga
+ */
 public class Board {
 
     Piece[][] board = new Piece[8][8];
@@ -17,6 +20,11 @@ public class Board {
         }
     }
 
+    /**
+     * @param i coordinate in i
+     * @param j coordinate in j
+     * @return the color of the piece selected.
+     */
     public int getPieceColor(int i, int j){ return board[i][j].getColor(); }
 
     /**
@@ -32,36 +40,26 @@ public class Board {
      */
     public int getPlayerTurn() { return playerTurn; }
 
-
     /**
      * Sets the pieces on the board.
      */
     public void initiateBoard() {
 
-        board[0][0] = new Rock();
-        board[0][1] = new Knight();
-        board[0][2] = new Bishop();
-        board[0][3] = new Queen();
-        board[0][4] = new King();
-        board[0][5] = new Bishop();
-        board[0][6] = new Knight();
-        board[0][7] = new Rock();
+        for(int x = 0, i = 0; i < 2; i++, x = 7) {
+            board[x][0] = new Rock();
+            board[x][1] = new Knight();
+            board[x][2] = new Bishop();
+            board[x][3] = new Queen();
+            board[x][4] = new King();
+            board[x][5] = new Bishop();
+            board[x][6] = new Knight();
+            board[x][7] = new Rock();
+        }
 
         for(int i = 0; i < 8; i++) {
             board[1][i] = new Pawn();
             board[6][i] = new Pawn();
-        }
 
-        board[7][0] = new Rock();
-        board[7][1] = new Knight();
-        board[7][2] = new Bishop();
-        board[7][3] = new Queen();
-        board[7][4] = new King();
-        board[7][5] = new Bishop();
-        board[7][6] = new Knight();
-        board[7][7] = new Rock();
-
-        for(int i = 0; i < 8; i++) {
             board[0][i].setColor(2);
             board[1][i].setColor(2);
             board[6][i].setColor(1);
@@ -77,7 +75,7 @@ public class Board {
         for(int i = 0; i < 8; i++) {
             System.out.print("\n" + i + "|");
             for(int j = 0; j < 8; j++) {
-                System.out.print(board[i][j].pc() + board[i][j].getName() + "|");
+                System.out.print(board[i][j].pieceConvert() + board[i][j].getName() + "|");
             }
             System.out.print("\n-+--+--+--+--+--+--+--+--+");
         }
@@ -85,12 +83,11 @@ public class Board {
 
     }
 
-
     /**
      * Gets the move from pieceSelector and prints the subBoard of the game with the possible moves.
      *
-     * @param i1 coordinate in "i"
-     * @param j1 coordinate in "j"
+     * @param i1 coordinate in "i".
+     * @param j1 coordinate in "j".
      */
     public void showMove(int i1, int j1){
 
@@ -99,7 +96,7 @@ public class Board {
         for(int i = 0; i < 8; i++) {
             System.out.print("\n" + i + "|");
             for(int j = 0; j < 8; j++) {
-                System.out.print(nextMove[i][j].pc() + nextMove[i][j].getName() + "|");
+                System.out.print(nextMove[i][j].pieceConvert() + nextMove[i][j].getName() + "|");
             }
             System.out.print("\n-+--+--+--+--+--+--+--+--+");
         }
@@ -109,8 +106,8 @@ public class Board {
     /**
      * Makes the move from the possible moves from subBoard.
      *
-     * @param i1 coordinate in "i"
-     * @param j1 coordinate in "j"
+     * @param i1 coordinate in "i".
+     * @param j1 coordinate in "j".
      */
     public boolean performMove(int i1, int j1){
 
@@ -130,9 +127,4 @@ public class Board {
         }
         return false;
     }
-
 }
-
-
-
-

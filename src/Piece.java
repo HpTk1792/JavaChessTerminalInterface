@@ -1,3 +1,6 @@
+/**
+ * Author: Alejandro Quiroga
+ */
 public class Piece {
 
     protected int color;
@@ -5,12 +8,10 @@ public class Piece {
     protected boolean hasMoved;
     protected Piece[][] subBoard;
 
-    Piece(){
-        name = " ";
-    }
+    Piece(){ name = " "; }
 
     /**
-     * getters and setters
+     * getters and setters.
      */
     public void setColor(int color){ this.color = color; }
 
@@ -22,11 +23,10 @@ public class Piece {
 
     public boolean getHasMoved() { return hasMoved; }
 
-    //TODO refactor! pieceConvert
     /**
      * @return String in order to print the correspondent information to the player.
      */
-    public String pc(){
+    public String pieceConvert(){
         if(color == 0) { return " "; }
         else if(color == 1) { return "O"; }
         else if(color == 2) { return "X"; }
@@ -34,6 +34,27 @@ public class Piece {
         else { return "!"; }
     }
 
+    /**
+     * Copying the board to the subBoard.
+     *
+     * @param board the main board.
+     */
+    public void copyBoard(Piece[][] board){
+        subBoard = new Piece[8][8];
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                whichPiece(board, i, j);
+                subBoard[i][j].setColor(board[i][j].getColor());
+            }
+        }
+    }
+
+    /**
+     * Creates the correct instance of every piece in subBoard.
+     * @param board the main board.
+     * @param i coordinate.
+     * @param j coordinate.
+     */
     public void whichPiece(Piece[][] board, int i, int j){
 
         if(board[i][j] instanceof Pawn) { subBoard[i][j] = new Pawn(); }
@@ -46,6 +67,13 @@ public class Piece {
 
     }
 
+    /**
+     * No move in case of selecting a void piece.
+     * @param board the main board.
+     * @param i coordinate.
+     * @param j coordinate.
+     * @return the main board without changes.
+     */
     public Piece[][] move(Piece[][] board, int i, int j){
         return board;
     }

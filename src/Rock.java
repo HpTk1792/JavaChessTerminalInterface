@@ -1,3 +1,6 @@
+/**
+ * Author: Isha Noor
+ */
 public class Rock extends Piece {
 
     Rock(){ name = "R"; }
@@ -5,16 +8,9 @@ public class Rock extends Piece {
     public Piece[][] move(Piece[][] board, int i1, int j1){
 
         //DECLARING SUB_BOARD AND COPYING THE BOARD
-        subBoard = new Piece[8][8];
-        for(int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                whichPiece(board, i, j);
-                //subBoard[i][j] = new Piece();
-                //subBoard[i][j].setName(board[i][j].getName());
-                subBoard[i][j].setColor(board[i][j].getColor());
-            }
-        }
-        // WHITE PIECE BEHAVIOR!
+        copyBoard(board);
+
+        // WHITE PIECE BEHAVIOR
         if(board[i1][j1].getColor() == 1) {
             //Loop for up Vertical side
             for (int i = i1; i > 0; i--) {
@@ -61,7 +57,7 @@ public class Rock extends Piece {
                 }
             }
         }
-        // Black Piece Behavior
+        // BLACK PIECE BEHAVIOUR
         else if(board[i1][j1].getColor() == 2) {
             //Loop for down Vertical side
             for (int i = i1; i < 7; i++) {

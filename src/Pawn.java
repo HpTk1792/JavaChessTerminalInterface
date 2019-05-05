@@ -1,3 +1,6 @@
+/**
+ * Author: Maite Navarro
+ */
 public class Pawn extends Piece {
 
     Pawn(){ name = "P"; }
@@ -5,17 +8,9 @@ public class Pawn extends Piece {
     public Piece[][] move(Piece[][] board, int i1, int j1){
 
         //DECLARING SUB_BOARD AND COPYING THE BOARD
-        subBoard = new Piece[8][8];
-        for(int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                whichPiece(board, i, j);
-                subBoard[i][j].setColor(board[i][j].getColor());
-            }
-        }
+        copyBoard(board);
 
-        // PIECE BEHAVIOR!
         // The movements are assigned to variables to be able to reuse the code for both players.
-
         int blackPlayer = -1;
         int white = 1;
         int movements = 0;

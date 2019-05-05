@@ -1,24 +1,17 @@
+/**
+ * Author: Maite Navarro
+ */
 public class Bishop extends Piece {
     Bishop(){ name = "B"; }
     public Piece[][] move(Piece[][] board, int i1, int j1) {
 
         //DECLARING SUB_BOARD AND COPYING THE BOARD
-        subBoard = new Piece[8][8];
-        for(int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                whichPiece(board, i, j);
-                subBoard[i][j].setColor(board[i][j].getColor());
-            }
-        }
+        copyBoard(board);
 
-
-        // PIECE BEHAVIOR!
         // The movements are assigned to variables to be able to reuse the code for both players.
-
         int rivalColour = 0;
         int sumarI = -1;
         int restarI = 1;
-
 
         if(board[i1][j1].getColor() == 1){
             rivalColour = 2;
@@ -26,7 +19,6 @@ public class Bishop extends Piece {
         } else if(board[i1][j1].getColor() == 2) {
             rivalColour = 1;
         }
-
 
         //go down to the right
         for (int i = i1, c = 1; i < 7 && j1 + c < 7; i++, c++) {

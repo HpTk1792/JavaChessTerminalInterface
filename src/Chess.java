@@ -1,7 +1,12 @@
 /**
+ * Authors: Isha Noor, Maite Navarro, Alejandro Quiroga
+ *
  * Chess main
  *
- * Processess the game, incompleted.
+ * Contains the main method of the program.
+ * It processes all the movements
+ *
+ * There is no check mate so the program will end when one player inputs "END".
  */
 
 import java.io.BufferedReader;
@@ -13,13 +18,20 @@ public class Chess {
     static BufferedReader br = new BufferedReader( new InputStreamReader ( System.in ));
     static int i;
     static int j;
+    static boolean endGame;
 
-    public static void checkPiece() throws IOException {
+    /**
+     * It processes all the inputs and makes sure the entry of the data is correct.
+     *
+     * @throws IOException for the BufferedReader
+     */
+    public static boolean checkPiece() throws IOException {
 
         int coordinates;
         String input = null;
         while(input == null || input.length() != 2) {
             input = br.readLine();
+            if(input.equals("END")) { return true; }
             if(input == null || input.length() != 2) {
                 System.out.println("You have to input 2 valid numbers \"0 - 1 - 2 - 3 - 4 - 5 - 6 - 7\" without spaces neither jumplines");
             }
@@ -38,28 +50,37 @@ public class Chess {
                 }
             }
         }
+        return false;
     }
 
     public static void  main(String Args[]) throws IOException {
 
         Board board = new Board();
 
-
         board.initiateBoard();
         board.printBoard();
 
-        while(true){
+        endGame = false;
+
+        while(!endGame){
             System.out.println("Turno " + board.getPlayerTurn());
-            checkPiece();
-            while(!board.successMove) {
-                while (board.getPieceColor(i, j) != board.getPlayerTurn()) {
-                    checkPiece();
+            endGame = checkPiece();
+            while(!endGame && !board.successMove) {
+                while (!endGame && board.getPieceColor(i, j) != board.getPlayerTurn()) {
+                    System.out.println("You have to select a correct piece.");
+                    endGame = checkPiece();
                 }
+                if(endGame) { break; }
                 board.showMove(i, j);
-                checkPiece();
+                endGame = checkPiece();
+                if(endGame) { break; }
                 board.successMove = board.performMove(i, j);
+                if(!board.successMove) {
+                    System.out.println("Wrong move, please select the piece you want to move.");
+                    endGame = checkPiece();
+                }
             }
-            board.printBoard();
+            if(!endGame) { board.printBoard(); }
             board.nextTurn();
             board.successMove = false;
         }

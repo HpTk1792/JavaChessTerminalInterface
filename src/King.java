@@ -1,3 +1,6 @@
+/**
+ * Author: Alejandro Quiroga
+ */
 public class King extends Piece {
 
     King(){ name = "K"; }
@@ -5,22 +8,17 @@ public class King extends Piece {
     public Piece[][] move(Piece[][] board, int i1, int j1){
 
         //DECLARING SUB_BOARD AND COPYING THE BOARD
-        subBoard = new Piece[8][8];
-        for(int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                whichPiece(board, i, j);
-                subBoard[i][j].setColor(board[i][j].getColor());
-            }
-        }
+        copyBoard(board);
 
         boolean isTop, isBottom, isLeft, isRight;
 
+        //Checking if the piece is in a border
         isTop = i1 == 0;
         isBottom = i1 == 7;
         isLeft = j1 == 0;
         isRight = j1 == 7;
 
-        // PIECE BEHAVIOR!
+        //Posible moves of the piece
         if(!isTop && !isLeft) {
             if(board[i1][j1].getColor() != board[i1 - 1][j1 - 1].getColor()) { subBoard[i1 - 1][j1 - 1].setColor(3); }
         }
