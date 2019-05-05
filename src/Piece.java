@@ -1,7 +1,6 @@
 public class Piece {
 
     protected int color;
-    protected int isThreatened;
     protected String name;
     protected boolean hasMoved;
     protected Piece[][] subBoard;
@@ -16,10 +15,6 @@ public class Piece {
     public void setColor(int color){ this.color = color; }
 
     public int getColor(){ return color; }
-
-    public void setIsThreatened(int threat){ isThreatened = threat; }
-
-    public int getIsThreatened(){ return isThreatened; }
 
     public String getName(){ return name; }
 
